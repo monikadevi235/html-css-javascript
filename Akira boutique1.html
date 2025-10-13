@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Akira Boutique</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff5f8;
+      color: #333;
+    }
+    header {
+      background: #d81b60;
+      color: white;
+      padding: 20px 10px;
+      text-align: center;
+    }
+    nav {
+      background: #ad1457;
+      padding: 8px 0;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 30px 20px;
+      text-align: center;
+      margin: 0;
+    }
+    .products {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 15px;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(147, 16, 121, 0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .card:hover {
+      transform: scale(1.05);
+    }
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 420px;
+      text-align: center;
+      animation: zoomIn 0.4s;
+    }
+    .modal-content img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+    @keyframes zoomIn {
+      from {transform: scale(0.5);}
+      to {transform: scale(1);}
+    }
+    .close {
+      color: #d81b60;
+      font-size: 24px;
+      float: right;
+      cursor: pointer;
+    }
+    footer {
+      background: #d81b60;
+      color: white;
+      text-align: center;
+      padding: 20px 10px;
+      margin-top: 20px;
+    }
+    .collection-link {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #ad1457;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .collection-link:hover {
+      background: #880e4f;
+    }
+    #gallery {
+      background: #ffe6f0;
+      padding: 30px 20px;
+    }
+    #Policies {
+      background: #fce4ec;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      padding: 25px 20px;
+      border-radius: 10px;
+    }
+    .policy-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width: 220px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .policy-card h4 {
+      margin-bottom: 10px;
+      color: #ad1457;
+    }
+    .policy-card p {
+      font-size: 14px;
+      color: #555;
+    }
+    #about p i {
+      color: #d81b60;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Akira Boutique</h1>
+    <p>Fashion that defines you</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#collection">Collection</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#Policies">Policies</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+     <b>At Akira Boutique, we believe that fashion is more than just clothing – it’s an expression of your identity. We bring you an exclusive range of designer wear, from traditional ethnic outfits to modern chic dresses, crafted with love and care. Our mission is to make every woman feel elegant, confident, and unique, no matter the occasion. With a blend of tradition and contemporary trends, Akira Boutique is where style meets sophistication.</b>
+    </p>
+  </section>
+
+  <section id="collection">
+    <h2>Our Collection</h2>
+    <div class="products">
+      <div class="card" onclick="openModal('lehenga.png','Lehenga','₹6,235')">
+        <img src="lehenga.png" alt="lehenga">
+        <h3>Lehenga</h3>
+        <p>₹6,235</p>
+      </div>
+      <div class="card" onclick="openModal('Anarkali.png','Anarkali','₹3,850')">
+        <img src="Anarkali.png" alt="Anarkali">
+        <h3>Anarkali</h3>
+        <p>₹3,850</p>
+      </div>
+      <div class="card" onclick="openModal('Draped dress.png','Draped Dress','₹6,485')">
+        <img src="Draped dress.png" alt="Draped dress">
+        <h3>Draped Dress</h3>
+        <p>₹6,485</p>
+      </div>
+      <div class="card" onclick="openModal('Akira signature.png','Akira Signature','₹6,249')">
+        <img src="Akira signature.png" alt="Akira signature">
+        <h3>Akira Signature</h3>
+        <p>₹6,249</p>
+      </div>
+    </div>
+    <a href="https://aakirathecouture.in/collections" target="_blank" class="collection-link">View More Collections</a>
+  </section>
+
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="">
+      <h3 id="modalTitle"></h3>
+      <p id="modalPrice"></p>
+    </div>
+  </div>
+
+  <section id="gallery">
+    <h2>Gallery</h2>
+    <p>Explore our latest styles and inspirations from recent collections.</p>
+  </section>
+
+  <section id="Policies">
+    <div class="policy-card">
+      <h4>Shipping & Returns</h4>
+      <p>Fast delivery within 5-7 business days. Returns accepted within 14 days with original tags.</p>
+    </div>
+    <div class="policy-card">
+      <h4>Refund Policy</h4>
+      <p>Refunds processed within 7 business days to the original payment mode.</p>
+    </div>
+    <div class="policy-card">
+      <h4>Privacy Policy</h4>
+      <p>We keep your personal information safe and never share it with third parties.</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📍 Location: Main Street, Your City</p>
+    <p>📞 Phone: +91 9043284696</p>
+    <p>📧 Email: support@aakirathecouture.in</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Akira Boutique | All Rights Reserved</p>
+  </footer>
+
+  <script>
+    function openModal(img, title, price) {
+      document.getElementById("myModal").style.display = "flex";
+      document.getElementById("modalImg").src = img;
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalPrice").innerText = price;
+    }
+    function closeModal() {
+      document.getElementById("myModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

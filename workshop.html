@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Registration</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url(photo.png);
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #2962e9;
+      color: #fff;
+      padding: 15px;
+      text-align: center;
+    }
+    main {
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    h2 { text-align: center; }
+    label { display: block; margin-top: 10px; }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px ;
+    }
+    button {
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover { background: #555; }
+    #message { margin-top: 15px; font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Workshop Registration</h1>
+  </header>
+
+  <main>
+    <h2>Register Here</h2>
+    <form id="regForm">
+      <label for="name">Full Name:</label>
+      <input type="text" id="name" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+
+      <label for="phone">Phone:</label>
+      <input type="text" id="phone" maxlength="10" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" required>
+
+      <label for="confirm">Confirm Password:</label>
+      <input type="password" id="confirm" required>
+
+      <label for="workshop">Select Workshop:</label>
+      <select id="workshop" required>
+        <option value="">--Choose--</option>
+        <option value="AI">AI & Machine Learning</option>
+        <option value="Web">Web Development</option>
+        <option value="Cyber">Cybersecurity</option>
+      </select>
+
+      <button type="submit">Register</button>
+    </form>
+    <div id="message"></div>
+  </main>
+
+  <script>
+    document.getElementById("regForm").addEventListener("submit", function(e){
+      e.preventDefault();
+
+      let name = document.getElementById("name").value.trim();
+      let email = document.getElementById("email").value.trim();
+      let phone = document.getElementById("phone").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let confirm = document.getElementById("confirm").value.trim();
+      let workshop = document.getElementById("workshop").value;
+      let msg = document.getElementById("message");
+
+      if(name === "" || email === "" || phone === "" || password === "" || confirm === "" || workshop === ""){
+        msg.textContent = "❌ Please fill all fields!";
+        msg.style.color = "red";
+        return;
+      }
+
+      let namePattern = /^[A-Za-z][A-Za-z0-9]*$/;
+      if(!name.match(namePattern)){
+        msg.textContent = "❌ Name must start with a letter and contain only letters or numbers!";
+        msg.style.color = "red";
+        return;
+      }
+
+      let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+      if(!email.match(emailPattern)){
+        msg.textContent = "❌ Invalid email format!";
+        msg.style.color = "red";
+        return;
+      }
+
+      let phonePattern = /^[0-9]{10}$/;
+      if(!phone.match(phonePattern)){
+        msg.textContent = "❌ Phone must be 10 digits!";
+        msg.style.color = "red";
+        return;
+      }
+
+      if(password.length < 6){
+        msg.textContent = "❌ Password must be at least 6 characters!";
+        msg.style.color = "red";
+        return;
+      }
+
+      if(password !== confirm){
+        msg.textContent = "❌ Passwords do not match!";
+        msg.style.color = "red";
+        return;
+      }
+
+      msg.textContent = "✅ Registration Successful!";
+      msg.style.color = "green";
+      document.getElementById("regForm").reset();
+    });
+  </script>
+</body>
+</html>
